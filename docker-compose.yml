@@ -5,11 +5,12 @@ hackmdPostgres:
     - POSTGRES_PASSWORD=hackmdpass
     - POSTGRES_DB=hackmd
 hackmd:
-  image: hackmdio/hackmd:0.4.3
+  image: hackmdio/hackmd:0.4.3-1
   environment:
     - POSTGRES_USER=hackmd
     - POSTGRES_PASSWORD=hackmdpass
+    - URL_PATH=hackmd
   links:
     - hackmdPostgres
   ports:
-    - "3000:3000"
+    - "127.0.0.1:3000:3000"

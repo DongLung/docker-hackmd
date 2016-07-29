@@ -23,6 +23,10 @@ ADD config.json /hackmd/config.json
 ADD .sequelizerc /hackmd/.sequelizerc
 ADD docker-entrypoint.sh /hackmd/docker-entrypoint.sh
 
+# for socket.io
+RUN sed -i -e"s/urlpath\s=\s''/urlpath='hackmd'/" /hackmd/public/js/common.js
+
+
 EXPOSE 3000
 
 CMD ["/bin/bash", "/hackmd/docker-entrypoint.sh"]
