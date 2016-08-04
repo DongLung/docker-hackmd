@@ -10,11 +10,18 @@ See more here: https://www.docker.com/docker-toolbox
 
 ## Get started
 
+This is a modified version for relative URL.
+
 1. Start you docker via `Docker Quickstart Terminal`, you will see a machine IP (remember that).
 2. Run `git clone https://github.com/hackmdio/docker-hackmd.git`.
-3. Run `docker-compose up` in your docker terminal.
-4. Wait until see th log `HTTP Server listening at port 3000`, it will take few minutes based on your internet.
-5. Open any browser and surf `<machine IP>:3000`
+3. `cd docker-hackmd && cd hackmd && docker build -t hackmdio/hackmd:0.4.4-1 . && cd ..`
+4. `sudo cp nginx.conf.example /etc/nginx/sites-enabled/hackmd && sudo service nginx reload`
+5. `sudo cp upstart.hackmd.conf /etc/init/hackmd.conf`
+6. Run `docker-compose up` in your docker terminal.
+7. Wait until see th log `HTTP Server listening at port 3000`, it will take few minutes based on your internet.
+8. Press ctrl-C to stop
+9. Run `sudo service hackmd start`
+10. Open any browser and surf `<machine IP>/hackmd/`
 
 ## Update
 
@@ -55,9 +62,10 @@ Similar to backup steps, but last command is
 
 The default setting would use pre-build docker image, follow below steps to customize your HackMD.
 
-1. Modify `docker-compose.yml` at line 8 `image: hackmdio/hackmd:0.4.1` to `build: hackmd`.
+1. Modify `docker-compose.yml` at line 8 `image: hackmdio/hackmd:0.4.4` to `build: hackmd`.
 2. Change the config file in `hackmd/config.json`, example [here](https://github.com/hackmdio/hackmd/blob/master/config.json).
 3. Run `docker-compose build --no-cache` in the docker terminal to build your own image.
 4. Then `docker-compose up` to startup.
 
 **Happy HackMD :smile:**
+
